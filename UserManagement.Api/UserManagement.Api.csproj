@@ -13,4 +13,8 @@
       <Folder Include="Controllers\Actions" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UserManagement.Infrastructure\UserManagement.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>
