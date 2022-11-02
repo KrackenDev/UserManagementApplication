@@ -1,5 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using UserManagement.Infrastructure.DAL;
 using UserManagement.Infrastructure.Models;
 using UserManagement.Infrastructure.Repositories.Interfaces;
 
@@ -7,24 +12,26 @@ namespace UserManagement.Infrastructure.Repositories
 {
     public class UserManagementRepository : IUserManagementRepository
     {
-        private readonly User[] _mockUsers = new[]
+        private readonly UserDbContext _context;
+        private readonly ILogger<UserManagementRepository> _logger;
+
+        public UserManagementRepository(UserDbContext context, ILogger<UserManagementRepository> logger)
         {
-            new User()
-            {
-                FirstName = "Billy",
-                LastName = "Bob",
-                Email = "FakeEmail.com"
-            }
-        };
-        
-        public UserManagementRepository(IConfiguration configuration)
-        {
-            
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<User[]> GetUsers()
         {
-            return await Task.FromResult(_mockUsers);
+            try
+            {
+                return await _context.Users.ToArrayAsync();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error getting users from database");
+                throw;
+            }
         }
     }
 }
