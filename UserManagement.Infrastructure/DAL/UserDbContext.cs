@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using UserManagement.Infrastructure.Models;
 
 namespace UserManagement.Infrastructure.DAL
@@ -16,6 +17,16 @@ namespace UserManagement.Infrastructure.DAL
             modelBuilder.Entity<User>()
                 .HasKey(user => user.Id)
                 .HasName("PK_UserId");
+
+            modelBuilder.Entity<User>()
+                .HasData(new User()
+                {
+                    Id = 1,
+                    FirstName = "Billy",
+                    MiddleName = "Bob",
+                    LastName = "Joe",
+                    LastModified = DateTime.Now
+                });
         }
     }
 }
