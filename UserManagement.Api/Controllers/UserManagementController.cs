@@ -41,14 +41,12 @@ namespace UserManagement.Api.Controllers
         [HttpGet("GetUser")]
         public async Task<IActionResult> Get([FromQuery] string id)
         {
-            if (id is null or "")
-                return BadRequest("Id is required");
-            if (!int.TryParse(id, out var userId))
-                return BadRequest("Id must be an integer");
+            if (!UserIdIsValid(id))
+                return BadRequest("Id is invalid");
             
             try
             {
-                var result = await _userManagementActions.GetUser(userId);
+                var result = await _userManagementActions.GetUser(int.Parse(id));
                 return Ok(result);
             }
             catch (Exception e)
@@ -56,6 +54,29 @@ namespace UserManagement.Api.Controllers
                 _logger.LogError(e, "Error in GetUser");
                 return BadRequest("Error getting user");
             }
+        }
+        
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> Delete([FromQuery] string id)
+        {
+            if (!UserIdIsValid(id))
+                return BadRequest("Id is invalid");
+
+            try
+            {
+                await _userManagementActions.DeleteUser(int.Parse(id));
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error in DeleteUser");
+                return BadRequest("Error deleting user");
+            }
+        }
+
+        private static bool UserIdIsValid(string id)
+        {
+            return (id is not (null or "")) && int.TryParse(id, out _);
         }
     }
 }

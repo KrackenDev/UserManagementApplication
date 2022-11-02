@@ -46,5 +46,23 @@ namespace UserManagement.Infrastructure.Repositories
                 throw;
             }
         }
+
+        public async Task<int> DeleteUser(int id)
+        {
+            try
+            {
+                User userToDelete = _context.Users.FirstOrDefault(u => u.Id == id);
+                if(userToDelete is null)
+                    throw new Exception("User not found");
+                
+                _context.Users.Remove(userToDelete);
+                return await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error deleting user from database");
+                throw;
+            }
+        }
     }
 }

@@ -17,5 +17,6 @@ namespace UserManagement.Api.Controllers.Actions
         
         public async Task<User[]> GetUsers() => await _userManagementRepo.GetUsers();
         public async Task<User> GetUser(int id) => await _userManagementRepo.GetUser(id);
+        public async Task DeleteUser(int id) => await _userManagementRepo.DeleteUser(id);
     }
 }
