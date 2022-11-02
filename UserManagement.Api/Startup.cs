@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using UserManagement.Api.Controllers.Actions;
 using UserManagement.Api.Controllers.Actions.Interfaces;
+using UserManagement.Infrastructure.Repositories;
+using UserManagement.Infrastructure.Repositories.Interfaces;
 
 namespace UserManagement.Api
 {
@@ -35,6 +37,7 @@ namespace UserManagement.Api
             });
 
             services.AddSingleton<IUserManagementActions, UserManagementActions>();
+            services.AddSingleton<IUserManagementRepository, UserManagementRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -20,7 +20,7 @@ namespace UserManagement.Api.Controllers
             _userManagementActions = userManagementActions ?? throw new ArgumentNullException(nameof(userManagementActions));
         }
         
-        [HttpGet]
+        [HttpGet("GetAllUsers")]
         public async Task<IActionResult> Get()
         {
             try

@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using UserManagement.Infrastructure.Models;
+using UserManagement.Infrastructure.Repositories.Interfaces;
 
 namespace UserManagement.Infrastructure.Repositories
 {
-    sealed class UserManagementRepository
+    public class UserManagementRepository : IUserManagementRepository
     {
         private readonly User[] _mockUsers = new[]
         {
@@ -21,9 +22,9 @@ namespace UserManagement.Infrastructure.Repositories
             
         }
 
-        public Task<User[]> GetUsers()
+        public async Task<User[]> GetUsers()
         {
-            return Task.FromResult(_mockUsers);
+            return await Task.FromResult(_mockUsers);
         }
     }
 }
