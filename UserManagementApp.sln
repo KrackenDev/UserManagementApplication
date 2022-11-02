@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Client", "UserManagement.Client\UserManagement.Client.csproj", "{A80E3D83-9189-460D-A5EE-9792C1AFCE87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Api", "UserManagement.Api\UserManagement.Api.csproj", "{7CC4545A-826D-416A-ADDB-A62437240AE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Infrastructure", "UserManagement.Infrastructure\UserManagement.Infrastructure.csproj", "{322146C7-F343-4D22-BA43-6D542B75E6A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A80E3D83-9189-460D-A5EE-9792C1AFCE87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80E3D83-9189-460D-A5EE-9792C1AFCE87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80E3D83-9189-460D-A5EE-9792C1AFCE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80E3D83-9189-460D-A5EE-9792C1AFCE87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC4545A-826D-416A-ADDB-A62437240AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC4545A-826D-416A-ADDB-A62437240AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC4545A-826D-416A-ADDB-A62437240AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC4545A-826D-416A-ADDB-A62437240AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322146C7-F343-4D22-BA43-6D542B75E6A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322146C7-F343-4D22-BA43-6D542B75E6A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322146C7-F343-4D22-BA43-6D542B75E6A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322146C7-F343-4D22-BA43-6D542B75E6A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
