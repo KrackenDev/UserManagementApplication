@@ -24,7 +24,7 @@ namespace UserManagement.Api.Controllers
         }
         
         [HttpGet("GetAllUsers")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
