@@ -6,5 +6,6 @@ namespace UserManagement.Api.Controllers.Actions.Interfaces
     public interface IUserManagementActions 
     {
         Task<User[]> GetUsers();
+        Task<User> GetUser(int id);
     }
 }

@@ -33,5 +33,18 @@ namespace UserManagement.Infrastructure.Repositories
                 throw;
             }
         }
+
+        public Task<User> GetUser(int id)
+        {
+            try
+            {
+                return _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error getting user from database");
+                throw;
+            }
+        }
     }
 }

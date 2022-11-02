@@ -15,9 +15,7 @@ namespace UserManagement.Api.Controllers.Actions
             _userManagementRepo = repository ?? throw new ArgumentNullException(nameof(repository));
         }
         
-        public async Task<User[]> GetUsers()
-        {
-            return await _userManagementRepo.GetUsers();
-        }
+        public async Task<User[]> GetUsers() => await _userManagementRepo.GetUsers();
+        public async Task<User> GetUser(int id) => await _userManagementRepo.GetUser(id);
     }
 }

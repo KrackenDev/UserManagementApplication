@@ -37,5 +37,26 @@ namespace UserManagement.Api.Controllers
                 return BadRequest("Error getting users");
             }
         }
+
+        [HttpGet("GetUser")]
+        public async Task<IActionResult> Get([FromQuery] string id)
+        {
+            if (id is null or "")
+                return BadRequest("Id is required");
+            
+            try
+            {
+                if (!int.TryParse(id, out var userId))
+                    throw new ArgumentException("Id must be an integer");
+
+                var result = await _userManagementActions.GetUser(userId);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error in GetUser");
+                return BadRequest("Error getting user");
+            }
+        }
     }
 }
