@@ -2,7 +2,7 @@
 
 namespace UserManagement.Infrastructure.Models
 {
-    sealed class User
+    public class User
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
