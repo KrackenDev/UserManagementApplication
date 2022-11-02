@@ -1,4 +1,4 @@
-﻿@page "/fetchdata"
+﻿@page "/usermanagement"
 @using System.ComponentModel.DataAnnotations
 @inject HttpClient Http
 
@@ -54,6 +54,7 @@ else
     
     private async Task DeleteUser(int userId)
     {
+        // TODO: Popup confirm should go here.
         await Http.DeleteAsync($"https://localhost:5001/api/UserManagement/DeleteUser?id={userId}");
         _users = await Http.GetFromJsonAsync<User[]>("https://localhost:5001/api/UserManagement/GetAllUsers");
     }

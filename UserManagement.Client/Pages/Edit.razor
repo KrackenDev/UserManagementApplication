@@ -1,0 +1,23 @@
+@page "/Edit/{userId:int}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Edit User</h3>
+
+<Form ButtonText="Update User" User="@user" OnSubmit="@EditUser"></Form>
+
+@code {
+    [Parameter] public int userId { get; set; }
+    UserManagementPage.User user = new UserManagementPage.User();
+    
+    protected async override Task OnParametersSetAsync()
+    {
+        user = await Http.GetFromJsonAsync<UserManagementPage.User>(@"https://localhost:5001/api/UserManagement/GetUser?id=" + userId);
+    }
+
+    async Task EditUser()
+    {
+        await Http.PutAsJsonAsync("https://localhost:5001/api/UserManagement/UpdateUser", user);
+        NavigationManager.NavigateTo("/usermanagement");
+    }
+}

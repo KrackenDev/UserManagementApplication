@@ -11,6 +11,6 @@
     async Task CreateUser()
     {
         await Http.PostAsJsonAsync("https://localhost:5001/api/UserManagement/CreateUser", user);
-        NavigationManager.NavigateTo("/fetchdata");
+        NavigationManager.NavigateTo("/usermanagement");
     }
 }
