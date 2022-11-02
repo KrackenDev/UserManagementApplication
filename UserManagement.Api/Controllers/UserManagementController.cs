@@ -43,12 +43,11 @@ namespace UserManagement.Api.Controllers
         {
             if (id is null or "")
                 return BadRequest("Id is required");
+            if (!int.TryParse(id, out var userId))
+                return BadRequest("Id must be an integer");
             
             try
             {
-                if (!int.TryParse(id, out var userId))
-                    throw new ArgumentException("Id must be an integer");
-
                 var result = await _userManagementActions.GetUser(userId);
                 return Ok(result);
             }
