@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using UserManagement.Api.Controllers.Actions.Interfaces;
 
 namespace UserManagement.Api.Controllers
@@ -14,10 +15,12 @@ namespace UserManagement.Api.Controllers
     public class UserManagementController : ControllerBase
     {
         private readonly IUserManagementActions _userManagementActions;
+        private readonly ILogger<UserManagementController> _logger;
 
-        public UserManagementController(IUserManagementActions userManagementActions)
+        public UserManagementController(IUserManagementActions userManagementActions, ILogger<UserManagementController> logger)
         {
             _userManagementActions = userManagementActions ?? throw new ArgumentNullException(nameof(userManagementActions));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
         
         [HttpGet("GetAllUsers")]
@@ -30,8 +33,7 @@ namespace UserManagement.Api.Controllers
             }
             catch (Exception e)
             {
-                // TODO: Add ILogger.
-                Console.WriteLine(e);
+                _logger.LogError(e, "Error in GetUsers");
                 return BadRequest("Error getting users");
             }
         }
