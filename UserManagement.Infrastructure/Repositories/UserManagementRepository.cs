@@ -64,5 +64,22 @@ namespace UserManagement.Infrastructure.Repositories
                 throw;
             }
         }
+
+        public Task CreateUser(User user)
+        {
+            try
+            {
+                if(!user.IsValid())
+                    throw new Exception("User is not valid");
+                
+                _context.Users.Add(user);
+                return _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error creating user in database");
+                throw;
+            }
+        }
     }
 }

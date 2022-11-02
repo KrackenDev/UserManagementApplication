@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using UserManagement.Api.Controllers.Actions.Interfaces;
+using UserManagement.Infrastructure.Models;
 
 namespace UserManagement.Api.Controllers
 {
@@ -33,8 +34,7 @@ namespace UserManagement.Api.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Error in GetUsers");
-                return BadRequest("Error getting users");
+                return GenerateBadResponse("Error getting users", "Error in GetUsers endpoint", e);
             }
         }
 
@@ -51,8 +51,7 @@ namespace UserManagement.Api.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Error in GetUser");
-                return BadRequest("Error getting user");
+                return GenerateBadResponse("Error getting user", "Error in GetUser endpoint", e);
             }
         }
         
@@ -69,14 +68,36 @@ namespace UserManagement.Api.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Error in DeleteUser");
-                return BadRequest("Error deleting user");
+                return GenerateBadResponse("Error deleting user", "Error in DeleteUser endpoint", e);
             }
         }
 
+        [HttpPost("CreateUser")]
+        public async Task<IActionResult> Create([FromBody] User user)
+        {
+            if (!user.IsValid())
+                return BadRequest("User is invalid");
+
+            try
+            {
+                await _userManagementActions.CreateUser(user);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return GenerateBadResponse("Error creating user", "Error in CreateUser endpoint", e);
+            }
+        }
+        
         private static bool UserIdIsValid(string id)
         {
             return (id is not (null or "")) && int.TryParse(id, out _);
+        }
+
+        private IActionResult GenerateBadResponse(string httpMessage, string logMessage, Exception exception)
+        {
+            _logger.LogError(exception, logMessage);
+            return BadRequest(httpMessage);
         }
     }
 }

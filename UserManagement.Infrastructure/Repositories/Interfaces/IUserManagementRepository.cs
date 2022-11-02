@@ -8,5 +8,6 @@ namespace UserManagement.Infrastructure.Repositories.Interfaces
        Task<User[]> GetUsers();
        Task<User> GetUser(int id);
        Task<int> DeleteUser(int id);
+       Task CreateUser(User user);
     }
 }
