@@ -7,5 +7,7 @@
 * Utilizing Entity Framework Core, the database can be created by running the following command in the UserManagement.Infrastructure project directory:
     * `dotnet ef migrations add InitialCreate -p .\UserManagement.Infrastructure.csproj -s ..\UserManagement.Api\UserManagement.Api.csproj`
     * `dotnet ef database update -p .\UserManagement.Infrastructure.csproj -s ..\UserManagement.Api\UserManagement.Api.csproj`
-    * Please note that both Microsoft.EntityFrameworkCore.Design and Microsoft.EntityFrameworkCore.Tools is required to run these commands.
-        * Version 5.0.17 is the version that was used for this project.
+    * Please note that both Microsoft.EntityFrameworkCore.Design and Microsoft.EntityFrameworkCore.Tools is required to run these commands. These tools can be installed through NuGet.
+    * Version 5.0.17 is the version that was used for this project.
+    * dotnet-ef must also be installed.
+       * `dotnet tool install --global dotnet-ef --version 5.0.17`
