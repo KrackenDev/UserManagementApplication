@@ -1,0 +1,16 @@
+@page "/create"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+<h3>Create</h3>
+
+<Form ButtonText="Create User" User="@user" OnSubmit="@CreateUser"></Form>
+
+@code {
+    FetchData.User user = new FetchData.User();
+
+    async Task CreateUser()
+    {
+        await Http.PostAsJsonAsync("https://localhost:5001/api/UserManagement/CreateUser", user);
+        NavigationManager.NavigateTo("/fetchdata");
+    }
+}

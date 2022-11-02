@@ -4,6 +4,10 @@
 
 <h1>User Management</h1>
 
+<div class="form-group">
+    <a class="btn btn-primary" href="create">Add User</a>
+</div>
+
 @if (_users == null)
 {
     <p>
@@ -43,7 +47,8 @@ else
         // TODO: Move this to a constants or config file.
         _users = await Http.GetFromJsonAsync<User[]>("https://localhost:5001/api/UserManagement/GetAllUsers");
     }
-
+    
+    //TODO This should be a service model. 
     public class User
     {
         [Required]
