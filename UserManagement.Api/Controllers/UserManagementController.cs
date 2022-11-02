@@ -89,6 +89,23 @@ namespace UserManagement.Api.Controllers
             }
         }
         
+        [HttpPut("UpdateUser")]
+        public async Task<IActionResult> Update([FromBody] User user)
+        {
+            if (!user.IsValid())
+                return BadRequest("User is invalid");
+
+            try
+            {
+                await _userManagementActions.UpdateUser(user);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return GenerateBadResponse("Error updating user", "Error in UpdateUser endpoint", e);
+            }
+        }
+        
         private static bool UserIdIsValid(string id)
         {
             return (id is not (null or "")) && int.TryParse(id, out _);

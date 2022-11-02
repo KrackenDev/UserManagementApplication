@@ -9,5 +9,6 @@ namespace UserManagement.Api.Controllers.Actions.Interfaces
         Task<User> GetUser(int id);
         Task DeleteUser(int userId);
         Task CreateUser(User user);
+        Task UpdateUser(User user);
     }
 }

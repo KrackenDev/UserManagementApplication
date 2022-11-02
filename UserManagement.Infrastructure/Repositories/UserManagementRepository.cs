@@ -81,5 +81,22 @@ namespace UserManagement.Infrastructure.Repositories
                 throw;
             }
         }
+
+        public Task UpdateUser(User user)
+        {
+            try
+            {
+                if(!user.IsValid())
+                    throw new Exception("User is not valid");
+                
+                _context.Users.Update(user);
+                return _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error updating user in database");
+                throw;
+            }
+        }
     }
 }
