@@ -1,27 +1,35 @@
 <EditForm Model="@User" OnValidSubmit="@OnSubmit">
     <DataAnnotationsValidator/>
     <div class="form-group">
-        <lablel>First Name</lablel>
-        <InputText @bind-Value="@User.FirstName"/>
-        <ValidationMessage For="@(() => User.FirstName)"/>
+        <lablel>First Name:</lablel>
+        <div>
+            <InputText @bind-Value="@User.FirstName"/>
+            <ValidationMessage For="@(() => User.FirstName)"/>
+        </div>
     </div>
 
     <div class="form-group">
-        <lablel>Middle Name</lablel>
-        <InputText @bind-Value="@User.MiddleName"/>
-        <ValidationMessage For="@(() => User.MiddleName)"/>
+        <lablel>Middle Name:</lablel>
+        <div>
+            <InputText @bind-Value="@User.MiddleName"/>
+            <ValidationMessage For="@(() => User.MiddleName)"/>
+        </div>
     </div>
 
     <div class="form-group">
-        <lablel>Last Name</lablel>
-        <InputText @bind-Value="@User.LastName"/>
-        <ValidationMessage For="@(() => User.LastName)"/>
+        <lablel>Last Name:</lablel>
+        <div>
+            <InputText @bind-Value="@User.LastName"/>
+            <ValidationMessage For="@(() => User.LastName)"/>
+        </div>
     </div>
 
     <div class="form-group">
-        <lablel>Email</lablel>
-        <InputText @bind-Value="@User.Email"/>
-        <ValidationMessage For="@(() => User.Email)"/>
+        <lablel>Email:</lablel>
+        <div>
+            <InputText @bind-Value="@User.Email"/>
+            <ValidationMessage For="@(() => User.Email)"/>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary">
@@ -32,7 +40,7 @@
 @code {
 
     [Parameter]
-    public FetchData.User User { get; set; }
+    public UserManagementPage.User User { get; set; }
 
     [Parameter]
     public string ButtonText { get; set; }

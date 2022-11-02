@@ -33,6 +33,10 @@ else
                 <td>@user.MiddleName</td>
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
+                <td>
+                    <a class="btn btn-primary" href="edit/@user.Id">Edit</a>
+                    <button class="btn btn-danger" @onclick="@(() => DeleteUser(user.Id))">Delete</button>
+                </td>
             </tr>
         }
         </tbody>
@@ -48,9 +52,16 @@ else
         _users = await Http.GetFromJsonAsync<User[]>("https://localhost:5001/api/UserManagement/GetAllUsers");
     }
     
+    private async Task DeleteUser(int userId)
+    {
+        await Http.DeleteAsync($"https://localhost:5001/api/UserManagement/DeleteUser?id={userId}");
+        _users = await Http.GetFromJsonAsync<User[]>("https://localhost:5001/api/UserManagement/GetAllUsers");
+    }
+    
     //TODO This should be a service model. 
     public class User
     {
+        public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -58,5 +69,4 @@ else
         public string LastName { get; set; }
         public string Email { get; set; }
     }
-
 }
